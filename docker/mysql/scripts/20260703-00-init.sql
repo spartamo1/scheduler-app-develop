@@ -2,6 +2,7 @@ CREATE TABLE `users` (
                          `id` bigint NOT NULL AUTO_INCREMENT,
                          `name` varchar(100) NOT NULL,
                          `email` varchar(100) NOT NULL,
+                         `password`	varchar(100) NOT NULL,
                          `created_at` datetime NOT NULL,
                          `updated_at` datetime NOT NULL,
                          CONSTRAINT `PK_USERS` PRIMARY KEY (`id`),

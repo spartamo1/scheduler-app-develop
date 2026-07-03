@@ -39,6 +39,20 @@
           "relGroupId": null
         },
         {
+          "_id": "RTLudc3rTMX3bHdXH",
+          "name": "Field",
+          "pName": "password",
+          "domain": "",
+          "type": "varchar(100)",
+          "defaultValue": "",
+          "isAllowNull": false,
+          "comment": "",
+          "relEntity": null,
+          "relFieldId": null,
+          "relType": null,
+          "relGroupId": null
+        },
+        {
           "_id": "u2v3cfbxwxKR85Gww",
           "name": "created_at",
           "pName": "created_at",
@@ -306,7 +320,7 @@
       "defaultValue": ""
     }
   ],
-  "createdAt": "2026-07-03T07:52:15.781Z",
+  "createdAt": "2026-07-03T10:47:37.472Z",
   "creatorName": "progr kj",
   "creatorThumb": "https://lh3.googleusercontent.com/a/ACg8ocLru39IVZqDOIL-f3rSvj_AhtSBQ_e8yClKFPyfSzqy4Th8pw=s96-c"
 }
