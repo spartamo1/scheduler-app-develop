@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.prjkmo112.schedulerappdevelop.config.PasswordEncoder;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateUserReqDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.UserDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.mapper.UserMapper;
@@ -21,6 +22,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public List<UserDto> getAll() {
         return userRepository.findAll().stream()
@@ -38,6 +40,8 @@ public class UserService {
     @Transactional
     public UserDto create(CreateUserReqDto createUserReqDto) {
         User user = userMapper.toEntity(createUserReqDto);
+        String hashedPw = passwordEncoder.encode(createUserReqDto.getPassword());
+        user.setPassword(hashedPw);
         userRepository.save(user);
         return userMapper.toUserDto(user);
     }
@@ -48,7 +52,8 @@ public class UserService {
                 .orElseThrow(() -> new ApiException("User Not Found", HttpStatus.NOT_FOUND));
 
         user.setName(createUserReqDto.getName());
-        user.setPassword(createUserReqDto.getPassword());
+        String hashedPw = passwordEncoder.encode(createUserReqDto.getPassword());
+        user.setPassword(hashedPw);
         userRepository.save(user);
         return userMapper.toUserDto(user);
     }

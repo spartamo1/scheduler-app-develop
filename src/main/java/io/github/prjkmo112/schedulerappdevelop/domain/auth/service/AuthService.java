@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.prjkmo112.schedulerappdevelop.config.PasswordEncoder;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateUserReqDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.UserDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.service.UserService;
@@ -19,6 +20,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     public record AuthUserDto(Long id, String email) {
     }
@@ -27,7 +29,7 @@ public class AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ApiException("Email or Password not match", HttpStatus.UNAUTHORIZED));
 
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new ApiException("Email or Password not match", HttpStatus.UNAUTHORIZED);
         }
 
