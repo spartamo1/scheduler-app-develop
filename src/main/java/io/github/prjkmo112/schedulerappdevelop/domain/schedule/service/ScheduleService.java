@@ -3,7 +3,7 @@ package io.github.prjkmo112.schedulerappdevelop.domain.schedule.service;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +26,8 @@ public class ScheduleService {
     private final ScheduleMapper scheduleMapper;
     private final UserRepository userRepository;
 
-    public List<ScheduleDto> getAll() {
-        return scheduleRepository.findAll(Sort.by(Sort.Direction.DESC, "updatedAt")).stream()
+    public List<ScheduleDto> getAll(Pageable pageable) {
+        return scheduleRepository.findAll(pageable).stream()
                 .map(scheduleMapper::toScheduleDto)
                 .toList();
     }

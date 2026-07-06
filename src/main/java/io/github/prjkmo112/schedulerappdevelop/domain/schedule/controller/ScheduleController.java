@@ -4,6 +4,10 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +31,20 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @GetMapping
-    public List<ScheduleDto> getAll() {
-        return scheduleService.getAll();
+    public List<ScheduleDto> getAll(
+            @PageableDefault(
+                    size = 10,
+                    sort = "updatedAt",
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
+    ) {
+        Pageable fixedPageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "updatedAt") // 파라미터 들어와도 고정.
+        );
+
+        return scheduleService.getAll(fixedPageable);
     }
 
     @GetMapping("/{id}")
