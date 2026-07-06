@@ -34,8 +34,8 @@ public class Comment extends AuditingBaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "schedule_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Schedule schedule;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
