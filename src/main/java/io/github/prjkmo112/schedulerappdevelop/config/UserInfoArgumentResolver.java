@@ -19,7 +19,7 @@ import io.github.prjkmo112.schedulerappdevelop.exception.ApiException;
 
 @Component
 @RequiredArgsConstructor
-public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
+public class UserInfoArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Value("${spring.session.key.user-id}")
     private String sessionKeyUserId;

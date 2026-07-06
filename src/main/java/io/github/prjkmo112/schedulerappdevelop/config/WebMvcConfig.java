@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final LoginCheckInterceptor loginCheckInterceptor;
-    private final LoginUserArgumentResolver loginUserArgumentResolver;
+    private final UserInfoArgumentResolver userInfoArgumentResolver;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -24,7 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(loginUserArgumentResolver);
+        resolvers.add(userInfoArgumentResolver);
     }
 
 }
