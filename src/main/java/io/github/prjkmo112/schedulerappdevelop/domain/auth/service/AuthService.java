@@ -34,6 +34,7 @@ public class AuthService {
         return new AuthUserDto(user.getId(), user.getEmail());
     }
 
+    @Transactional
     public UserDto signup(CreateUserReqDto createUserReqDto) {
         return userService.create(createUserReqDto);
     }
