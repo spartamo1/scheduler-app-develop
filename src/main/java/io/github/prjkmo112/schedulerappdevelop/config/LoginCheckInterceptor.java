@@ -1,4 +1,4 @@
-package io.github.prjkmo112.schedulerappdevelop.interceptor;
+package io.github.prjkmo112.schedulerappdevelop.config;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
