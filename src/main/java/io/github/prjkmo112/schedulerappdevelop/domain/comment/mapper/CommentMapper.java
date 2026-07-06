@@ -5,11 +5,12 @@ import org.mapstruct.ReportingPolicy;
 
 import io.github.prjkmo112.schedulerappdevelop.domain.comment.dto.CommentDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.comment.dto.CreateCommentReqDto;
+import io.github.prjkmo112.schedulerappdevelop.domain.user.mapper.UserMapper;
 import io.github.prjkmo112.schedulerappdevelop.entity.Comment;
 
 @Mapper(
         componentModel = "spring",
-        uses = {},
+        uses = {UserMapper.class},
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public interface CommentMapper {
