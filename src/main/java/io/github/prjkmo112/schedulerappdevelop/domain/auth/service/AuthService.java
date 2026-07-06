@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateUserReqDto;
+import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.UserDto;
+import io.github.prjkmo112.schedulerappdevelop.domain.user.service.UserService;
 import io.github.prjkmo112.schedulerappdevelop.entity.User;
 import io.github.prjkmo112.schedulerappdevelop.exception.ApiException;
 import io.github.prjkmo112.schedulerappdevelop.repository.UserRepository;
@@ -15,6 +18,7 @@ import io.github.prjkmo112.schedulerappdevelop.repository.UserRepository;
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final UserService userService;
 
     public record AuthUserDto(Long id, String email) {
     }
@@ -28,6 +32,10 @@ public class AuthService {
         }
 
         return new AuthUserDto(user.getId(), user.getEmail());
+    }
+
+    public UserDto signup(CreateUserReqDto createUserReqDto) {
+        return userService.create(createUserReqDto);
     }
 
 }

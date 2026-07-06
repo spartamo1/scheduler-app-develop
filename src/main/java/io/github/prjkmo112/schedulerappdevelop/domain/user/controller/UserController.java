@@ -7,13 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateReqUserDto;
+import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateUserReqDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.UserDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.service.UserService;
 
@@ -39,14 +38,9 @@ public class UserController {
     @PutMapping("/{id}")
     public UserDto modify(
             @PathVariable Long id,
-            @Valid @RequestBody CreateReqUserDto createReqUserDto
+            @Valid @RequestBody CreateUserReqDto createUserReqDto
     ) {
-        return userService.modify(id, createReqUserDto);
-    }
-
-    @PostMapping
-    public UserDto create(@Valid @RequestBody CreateReqUserDto createReqUserDto) {
-        return userService.create(createReqUserDto);
+        return userService.modify(id, createUserReqDto);
     }
 
     @DeleteMapping("/{id}")

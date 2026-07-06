@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateReqUserDto;
+import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.CreateUserReqDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.dto.UserDto;
 import io.github.prjkmo112.schedulerappdevelop.domain.user.mapper.UserMapper;
 import io.github.prjkmo112.schedulerappdevelop.entity.User;
@@ -36,19 +36,19 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto create(CreateReqUserDto createReqUserDto) {
-        User user = userMapper.toEntity(createReqUserDto);
+    public UserDto create(CreateUserReqDto createUserReqDto) {
+        User user = userMapper.toEntity(createUserReqDto);
         userRepository.save(user);
         return userMapper.toUserDto(user);
     }
 
     @Transactional
-    public UserDto modify(Long userId, CreateReqUserDto createReqUserDto) {
+    public UserDto modify(Long userId, CreateUserReqDto createUserReqDto) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ApiException("User Not Found", HttpStatus.NOT_FOUND));
 
-        user.setName(createReqUserDto.getName());
-        user.setPassword(createReqUserDto.getPassword());
+        user.setName(createUserReqDto.getName());
+        user.setPassword(createUserReqDto.getPassword());
         userRepository.save(user);
         return userMapper.toUserDto(user);
     }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateReqUserDto {
+public class CreateUserReqDto {
 
     @NotBlank
     @Size(max = 40)
